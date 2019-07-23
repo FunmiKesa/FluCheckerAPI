@@ -22,13 +22,14 @@ router.get("/initialize", function(req, res, next) {
 /*
 Post flu data
 */
-router.post("/upload", function(req, res, next) {
-  const {status} = await fluService.insertData(req.body);
-  if (status) {
-    body = "Uploaded flu data." + status;
-    status = 200;
+router.post("/upload", async function(req, res, next) {
+  const { rows } = await fluService.insertData(req.body);
+  console.log(rows);
+  var status = 200;
+  if (rows) {
+    body = "Uploaded flu data.";
   } else {
-    body = "Failed to save flu data." + status;
+    body = "Failed to save flu data.";
     status = 500;
   }
   res.status(status).send(body);
