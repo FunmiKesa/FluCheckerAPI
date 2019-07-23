@@ -25,7 +25,6 @@ Post flu data
 router.post("/upload", function(req, res, next) {
   console.log(req.body);
   status = fluService.insertData(req.body);
-  print(status);
   if (status) {
     body = "Uploaded flu data.";
     status = 200;
