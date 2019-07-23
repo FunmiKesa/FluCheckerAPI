@@ -27,15 +27,15 @@ class FluService {
     }
     const sql =
       "CREATE TABLE IF NOT EXISTS flu_data (id SERIAL PRIMARY KEY, hadFever BOOLEAN NOT NUL, hadCough BOOLEAN NOT NUL, temperature INTEGER DEFAULT(0)";
-    pool
+    this.pool
       .query(sql)
       .then(res => {
         console.log(res);
-        pool.end();
+        this.pool.end();
       })
       .catch(err => {
         console.log(err);
-        pool.end();
+        this.pool.end();
       });
   }
 
@@ -48,12 +48,12 @@ class FluService {
       result
     ) {
       if (err) {
-        pool.end();
+        this.pool.end();
 
         return false;
       }
       console.log(err, result);
-      pool.end();
+      this.pool.end();
       return true;
     });
   }
