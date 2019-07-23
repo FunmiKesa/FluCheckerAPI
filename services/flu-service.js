@@ -58,7 +58,7 @@ class FluService {
       moment(new Date())
     ];
 
-    db.query(text, values, function(err, result) {
+    this.pool.query(text, values, function(err, result) {
       if (err) {
         this.pool.end();
         return false;
