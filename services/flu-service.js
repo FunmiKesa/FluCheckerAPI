@@ -37,7 +37,7 @@ class FluService {
       })
       .catch(err => {
         console.log(err);
-        this.pool.end();
+        // this.pool.end();
         return false;
       });
   }
@@ -66,7 +66,7 @@ class FluService {
         this.pool.end();
         return false;
       } else {
-        this.pool.end();
+        // this.pool.end();
         return true;
       }
     });
