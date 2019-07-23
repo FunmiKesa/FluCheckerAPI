@@ -1,4 +1,4 @@
-import moment from "moment";
+var moment = require("moment");
 var pg = require("pg");
 
 class FluService {

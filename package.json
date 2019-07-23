@@ -15,6 +15,7 @@
     "ejs": "latest",
     "aws-sdk": "latest",
     "body-parser": "latest",
-    "pg": "latest"
+    "pg": "latest",
+    "moment": "latest"
   }
 }
