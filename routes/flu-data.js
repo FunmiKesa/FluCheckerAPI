@@ -17,7 +17,13 @@ router.get("/initialize", function(req, res, next) {
 Post flu data
 */
 router.post("/upload", function(req, res, next) {
-  fluService.insertData();
-  res.send("Uploaded flu data.");
+  console.log(req);
+  status = fluService.insertData(req);
+  if (status) {
+    body = "Uploaded flu data.";
+  } else {
+    body = "Failed to save flu data.";
+  }
+  res.status(status).send(body);
 });
 module.exports = router;
