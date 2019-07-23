@@ -25,10 +25,10 @@ Post flu data
 router.post("/upload", function(req, res, next) {
   status = fluService.insertData(req.body);
   if (status) {
-    body = "Uploaded flu data.";
+    body = "Uploaded flu data." + status;
     status = 200;
   } else {
-    body = "Failed to save flu data.";
+    body = "Failed to save flu data." + status;
     status = 500;
   }
   res.status(status).send(body);
