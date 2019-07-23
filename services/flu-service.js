@@ -59,13 +59,15 @@ class FluService {
     ];
 
     this.pool.query(text, values, function(err, result) {
+      console.log(err, result);
+
       if (err) {
         this.pool.end();
         return false;
+      } else {
+        this.pool.end();
+        return true;
       }
-      console.log(err, result);
-      this.pool.end();
-      return true;
     });
   }
 }
