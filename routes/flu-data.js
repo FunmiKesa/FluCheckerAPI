@@ -23,15 +23,17 @@ router.get("/initialize", function(req, res, next) {
 Post flu data
 */
 router.post("/upload", async function(req, res, next) {
-  const { rows } = await fluService.insertData(req.body);
-  console.log(rows);
-  var status = 200;
-  if (rows) {
+  try {
+    const { rows } = await fluService.insertData(req.body);
+    console.log(rows);
+    var status = 200;
     body = "Uploaded flu data.";
-  } else {
+    res.status(status).send(body);
+  } catch (err) {
     body = "Failed to save flu data.";
     status = 500;
+    console.log(err);
+    res.status(status).send(body);
   }
-  res.status(status).send(body);
 });
 module.exports = router;
