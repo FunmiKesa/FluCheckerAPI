@@ -26,7 +26,7 @@ class FluService {
       return false;
     }
     const sql =
-      "CREATE TABLE IF NOT EXISTS flu_data (id SERIAL PRIMARY KEY, hadFever BOOLEAN NOT NULL, hadCough BOOLEAN NOT NULL, temperature INTEGER DEFAULT(0)";
+      "CREATE TABLE IF NOT EXISTS flu_data (id SERIAL PRIMARY KEY, hadFever BOOLEAN NOT NULL, hadCough BOOLEAN NOT NULL, temperature INTEGER DEFAULT 0,created_date TIMESTAMP)";
     this.pool
       .query(sql)
       .then(res => {
