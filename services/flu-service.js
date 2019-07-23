@@ -4,12 +4,6 @@ var pg = require("pg");
 class FluService {
   constructor() {}
   connect() {
-    process.env.RDS_HOSTNAME =
-      "feebrisinstance.csbvhqonqjkj.us-east-2.rds.amazonaws.com";
-    process.env.RDS_USERNAME = "feebrisadmin";
-    process.env.RDS_PASSWORD = "password";
-    process.env.RDS_PORT = 5432;
-    process.env.RDS_DATABASE = "flucheckerdb";
     this.pool = new pg.Pool({
       host: process.env.RDS_HOSTNAME,
       user: process.env.RDS_USERNAME,
