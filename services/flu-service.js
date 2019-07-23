@@ -43,6 +43,7 @@ class FluService {
   }
 
   insertData(data) {
+    console.log(data);
     if (this.connect() == false) {
       return false;
     }
