@@ -23,7 +23,7 @@ router.get("/initialize", function(req, res, next) {
 Post flu data
 */
 router.post("/upload", function(req, res, next) {
-  status = fluService.insertData(req.body);
+  const {status} = await fluService.insertData(req.body);
   if (status) {
     body = "Uploaded flu data." + status;
     status = 200;
