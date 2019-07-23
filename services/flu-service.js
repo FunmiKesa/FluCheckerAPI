@@ -25,16 +25,18 @@ class FluService {
     if (this.connect() == false) {
       return false;
     }
-    var query = this.pool.query(
-      "CREATE TABLE IF NOT EXISTS flu_data (id SERIAL PRIMARY KEY, hadFever BOOLEAN NOT NUL, hadCough BOOLEAN NOT NUL, temperature INTEGER DEFAULT(0)",
-      function(err, result) {
-        if (err) {
-          return false;
-        }
-        console.log(err, result);
-        return true;
-      }
-    );
+    sql =
+      "CREATE TABLE IF NOT EXISTS flu_data (id SERIAL PRIMARY KEY, hadFever BOOLEAN NOT NUL, hadCough BOOLEAN NOT NUL, temperature INTEGER DEFAULT(0)";
+    pool
+      .query(sql)
+      .then(res => {
+        console.log(res);
+        pool.end();
+      })
+      .catch(err => {
+        console.log(err);
+        pool.end();
+      });
   }
 
   insertData(data) {
@@ -46,9 +48,12 @@ class FluService {
       result
     ) {
       if (err) {
+        pool.end();
+
         return false;
       }
       console.log(err, result);
+      pool.end();
       return true;
     });
   }
