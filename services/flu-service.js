@@ -32,9 +32,9 @@ class FluService {
           return false;
         }
         console.log(err, result);
+        return true;
       }
     );
-    return true;
   }
 
   insertData(data) {

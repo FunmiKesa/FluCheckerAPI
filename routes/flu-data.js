@@ -10,7 +10,13 @@ router.get("/", function(req, res, next) {
 });
 
 router.get("/initialize", function(req, res, next) {
-  fluService.createTable();
+  status = fluService.createTable();
+  console.log("Initialize status : " + status);
+  if (status) {
+    res.send("Database tables were successfully created.");
+  } else {
+    res.send("Database tables were not successfully created.");
+  }
 });
 
 /*
