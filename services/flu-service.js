@@ -1,3 +1,4 @@
+import moment from "moment";
 var pg = require("pg");
 
 class FluService {
@@ -32,10 +33,12 @@ class FluService {
       .then(res => {
         console.log(res);
         this.pool.end();
+        return true;
       })
       .catch(err => {
         console.log(err);
         this.pool.end();
+        return false;
       });
   }
 
@@ -43,13 +46,22 @@ class FluService {
     if (this.connect() == false) {
       return false;
     }
-    var query = this.pool.query("INSERT INTO flu_data SET ?", data, function(
-      err,
-      result
-    ) {
+    const text = `INSERT INTO
+      flu_data( hadFever, hadCough, temperature, created_date)
+      VALUES($1, $2, $3, $4)
+      returning *`;
+
+    const values = [
+      uuidv4(),
+      data["hadFever"],
+      data["hadCough"],
+      data["temperature"],
+      moment(new Date())
+    ];
+
+    db.query(text, values, function(err, result) {
       if (err) {
         this.pool.end();
-
         return false;
       }
       console.log(err, result);
