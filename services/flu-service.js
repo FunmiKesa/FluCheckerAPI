@@ -52,7 +52,6 @@ class FluService {
       returning *`;
 
     const values = [
-      uuidv4(),
       data["hadFever"],
       data["hadCough"],
       data["temperature"],
