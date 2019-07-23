@@ -59,7 +59,7 @@ class FluService {
       moment(new Date())
     ];
 
-    this.pool.query(text, values, function(err, result) {
+    return this.pool.query(text, values, function(err, result) {
       console.log(err, result);
 
       if (err) {
