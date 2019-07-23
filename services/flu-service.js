@@ -25,7 +25,7 @@ class FluService {
     if (this.connect() == false) {
       return false;
     }
-    sql =
+    const sql =
       "CREATE TABLE IF NOT EXISTS flu_data (id SERIAL PRIMARY KEY, hadFever BOOLEAN NOT NUL, hadCough BOOLEAN NOT NUL, temperature INTEGER DEFAULT(0)";
     pool
       .query(sql)
